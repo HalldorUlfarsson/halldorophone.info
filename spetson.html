@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Studio Spetson — Kipseli, Athens</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #888;
+      --accent: #1a1a1a;
+      --rule: #e0e0e0;
+      --max: 720px;
+      --font-body: 'Georgia', 'Times New Roman', serif;
+      --font-sans: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      padding: 0 24px;
+    }
+
+    /* ── Layout ── */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 64px 0 120px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 56px;
+    }
+
+    .site-header a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .site-header a:hover { text-decoration: underline; }
+
+    /* ── Headings ── */
+    h1 {
+      font-family: var(--font-body);
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 48px 0 16px;
+    }
+
+    h3 {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      margin: 24px 0 6px;
+    }
+
+    /* ── Intro ── */
+    .intro {
+      font-size: 17px;
+      color: #444;
+      max-width: 540px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Rule ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 48px 0;
+    }
+
+    /* ── Gallery ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item img:hover { opacity: 0.88; }
+
+    .gallery-link {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .gallery-link:hover { color: var(--text); }
+
+    /* ── Climate chart embed ── */
+    .climate-wrap {
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 24px;
+      background: #fafafa;
+      overflow-x: auto;
+    }
+
+    /* ── Amenity grid ── */
+    .amenities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .amenity {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .amenity:nth-child(odd) { padding-right: 24px; border-right: 1px solid var(--rule); }
+    .amenity:nth-child(even) { padding-left: 24px; }
+
+    .amenity-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .amenity-value {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ── Map placeholder ── */
+    .map-wrap {
+      width: 100%;
+      aspect-ratio: 16/7;
+      background: #f0f0f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── Neighbourhood ── */
+    .neighbourhood p {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 12px;
+    }
+
+    /* ── Password gate ── */
+    #guest-gate {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .gate-prompt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .gate-prompt label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .gate-prompt input {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      outline: none;
+      padding: 4px 0;
+      width: 180px;
+      background: transparent;
+      color: var(--text);
+      letter-spacing: 0.1em;
+    }
+
+    .gate-prompt input:focus { border-bottom-color: var(--text); }
+
+    .gate-btn {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--text);
+      padding: 6px 16px;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .gate-btn:hover { background: var(--text); color: #fff; }
+
+    .gate-error {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: #c00;
+      display: none;
+      margin-top: 8px;
+    }
+
+    /* ── Guest content (hidden until unlocked) ── */
+    #guest-content {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── Info blocks inside guest section ── */
+    .info-block {
+      margin-bottom: 32px;
+    }
+
+    .info-block p, .info-block li {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .info-block ul {
+      padding-left: 20px;
+    }
+
+    .info-block .note {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* credential display */
+    .cred-table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      margin: 8px 0;
+    }
+
+    .cred-table td {
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+
+    .cred-table td:first-child {
+      color: var(--muted);
+      width: 160px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 10px;
+    }
+
+    .cred-table td:last-child {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    /* spots list */
+    .spots {
+      list-style: none;
+      padding: 0;
+    }
+
+    .spots li {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 14px !important;
+    }
+
+    .spots li:last-child { border-bottom: none; }
+
+    .spot-name {
+      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 13px !important;
+    }
+
+    .spots a {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .spots a:hover { color: var(--text); text-decoration: underline; }
+
+    /* ── Footer ── */
+    .site-footer {
+      margin-top: 96px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .amenities { grid-template-columns: 1fr; }
+      .amenity:nth-child(odd) { border-right: none; padding-right: 0; }
+      .amenity:nth-child(even) { padding-left: 0; }
+      .gate-prompt { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="site-header">
+    <a href="https://halldorophone.info">Halldór Úlfarsson</a> &nbsp;/&nbsp; Studio Spetson
+  </header>
+
+  <!-- Title -->
+  <h1>Studio Spetson</h1>
+  <p class="intro">A live-work studio in Kipseli, Athens. Open plan, high ceilings, workshop facilities. Available to collaborators and friends.</p>
+
+  <hr>
+
+  <!-- Gallery -->
+  <h2>Space</h2>
+
+  <div class="gallery">
+    <!-- Replace src values with your actual image URLs -->
+    <div class="gallery-item">
+      <img src="spetson-1.jpg" alt="Studio stairwell with X lighting installation" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="spetson-2.jpg" alt="Studio upper floor workspace" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="spetson-3.jpg" alt="Studio main floor with kitchenette" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="spetson-4.jpg" alt="Bedroom with double bed and desk" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="spetson-5.jpg" alt="Top floor bathroom and laundry" loading="lazy">
+    </div>
+    <div class="gallery-item">
+      <img src="spetson-6.jpg" alt="Basement workshop with CNC machine" loading="lazy">
+    </div>
+  </div>
+
+  <a class="gallery-link" href="https://photos.app.goo.gl/puRb6V6TUtayfBTy5" target="_blank" rel="noopener">More photos →</a>
+
+  <hr>
+
+  <!-- Climate chart -->
+  <h2>What to expect, month by month</h2>
+
+  <div class="climate-wrap">
+    <svg width="100%" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+      <style>
+        .ct { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+        .th { font-size: 13px; font-weight: 600; fill: #1a1a1a; }
+        .ts { font-size: 11px; fill: #888; }
+        .tv { font-size: 11px; font-weight: 600; fill: #1a1a1a; }
+      </style>
+      <!-- Title -->
+      <text class="ct th" x="20" y="22">Studio Spetson — Athens, Greece</text>
+      <text class="ct ts" x="20" y="38">Open plan · high ceilings · no AC · bars show avg high → avg low</text>
+
+      <!-- Grid lines -->
+      <line x1="20" y1="55" x2="880" y2="55" stroke="#e8e8e8" stroke-width="0.5"/>
+      <line x1="20" y1="100" x2="880" y2="100" stroke="#e8e8e8" stroke-width="0.5"/>
+      <line x1="20" y1="145" x2="880" y2="145" stroke="#e8e8e8" stroke-width="0.5"/>
+      <line x1="20" y1="190" x2="880" y2="190" stroke="#e8e8e8" stroke-width="0.5"/>
+      <line x1="20" y1="235" x2="880" y2="235" stroke="#e8e8e8" stroke-width="0.5"/>
+
+      <!-- Y labels -->
+      <text class="ct ts" x="15" y="58" text-anchor="end">40°</text>
+      <text class="ct ts" x="15" y="103" text-anchor="end">30°</text>
+      <text class="ct ts" x="15" y="148" text-anchor="end">20°</text>
+      <text class="ct ts" x="15" y="193" text-anchor="end">10°</text>
+      <text class="ct ts" x="15" y="238" text-anchor="end">0°</text>
+
+      <!-- Bars: Jan -->
+      <rect x="23" y="148" width="62" height="92" rx="3" fill="#B5D4F4"/>
+      <text class="ct tv" x="54" y="143" text-anchor="middle">12.5°</text>
+      <text class="ct ts" x="54" y="250" text-anchor="middle">5°</text>
+      <text class="ct ts" x="54" y="270" text-anchor="middle">Jan</text>
+
+      <!-- Feb -->
+      <rect x="93" y="143" width="62" height="92" rx="3" fill="#B5D4F4"/>
+      <text class="ct tv" x="124" y="138" text-anchor="middle">13.5°</text>
+      <text class="ct ts" x="124" y="245" text-anchor="middle">5°</text>
+      <text class="ct ts" x="124" y="270" text-anchor="middle">Feb</text>
+
+      <!-- Mar -->
+      <rect x="163" y="113" width="62" height="122" rx="3" fill="#C8DFA0"/>
+      <text class="ct tv" x="194" y="108" text-anchor="middle">15.7°</text>
+      <text class="ct ts" x="194" y="245" text-anchor="middle">7°</text>
+      <text class="ct ts" x="194" y="270" text-anchor="middle">Mar</text>
+
+      <!-- Apr -->
+      <rect x="233" y="88" width="62" height="122" rx="3" fill="#74B86E"/>
+      <text class="ct tv" x="264" y="83" text-anchor="middle">20°</text>
+      <text class="ct ts" x="264" y="220" text-anchor="middle">10°</text>
+      <text class="ct ts" x="264" y="270" text-anchor="middle">Apr</text>
+
+      <!-- May -->
+      <rect x="303" y="63" width="62" height="112" rx="3" fill="#74B86E"/>
+      <text class="ct tv" x="334" y="58" text-anchor="middle">26°</text>
+      <text class="ct ts" x="334" y="185" text-anchor="middle">14°</text>
+      <text class="ct ts" x="334" y="270" text-anchor="middle">May</text>
+
+      <!-- Jun -->
+      <rect x="373" y="73" width="62" height="82" rx="3" fill="#EF9F27"/>
+      <text class="ct tv" x="404" y="68" text-anchor="middle">31°</text>
+      <text class="ct ts" x="404" y="165" text-anchor="middle">18°</text>
+      <text class="ct ts" x="404" y="270" text-anchor="middle">Jun</text>
+
+      <!-- Jul -->
+      <rect x="443" y="57" width="62" height="72" rx="3" fill="#E24B4A"/>
+      <text class="ct tv" x="474" y="52" text-anchor="middle">~38°</text>
+      <text class="ct ts" x="474" y="140" text-anchor="middle">21°</text>
+      <text class="ct ts" x="474" y="270" text-anchor="middle">Jul</text>
+
+      <!-- Aug -->
+      <rect x="513" y="57" width="62" height="72" rx="3" fill="#E24B4A"/>
+      <text class="ct tv" x="544" y="52" text-anchor="middle">~38°</text>
+      <text class="ct ts" x="544" y="140" text-anchor="middle">21°</text>
+      <text class="ct ts" x="544" y="270" text-anchor="middle">Aug</text>
+
+      <!-- Sep -->
+      <rect x="583" y="78" width="62" height="87" rx="3" fill="#EF9F27"/>
+      <text class="ct tv" x="614" y="73" text-anchor="middle">29°</text>
+      <text class="ct ts" x="614" y="175" text-anchor="middle">17°</text>
+      <text class="ct ts" x="614" y="270" text-anchor="middle">Sep</text>
+
+      <!-- Oct -->
+      <rect x="653" y="98" width="62" height="112" rx="3" fill="#74B86E"/>
+      <text class="ct tv" x="684" y="93" text-anchor="middle">23°</text>
+      <text class="ct ts" x="684" y="220" text-anchor="middle">13°</text>
+      <text class="ct ts" x="684" y="270" text-anchor="middle">Oct</text>
+
+      <!-- Nov -->
+      <rect x="723" y="113" width="62" height="102" rx="3" fill="#C8DFA0"/>
+      <text class="ct tv" x="754" y="108" text-anchor="middle">18°</text>
+      <text class="ct ts" x="754" y="225" text-anchor="middle">10°</text>
+      <text class="ct ts" x="754" y="270" text-anchor="middle">Nov</text>
+
+      <!-- Dec -->
+      <rect x="793" y="143" width="62" height="92" rx="3" fill="#B5D4F4"/>
+      <text class="ct tv" x="824" y="138" text-anchor="middle">14°</text>
+      <text class="ct ts" x="824" y="245" text-anchor="middle">7°</text>
+      <text class="ct ts" x="824" y="270" text-anchor="middle">Dec</text>
+
+      <!-- Divider -->
+      <line x1="20" y1="290" x2="880" y2="290" stroke="#e0e0e0" stroke-width="0.5"/>
+
+      <!-- Info blocks -->
+      <text class="ct th" x="20" y="312">Cooling</text>
+      <text class="ct ts" x="20" y="328">No AC — fan + cold showers only</text>
+
+      <text class="ct th" x="20" y="352">Heating</text>
+      <text class="ct ts" x="20" y="368">Bedroom — electric radiator</text>
+      <text class="ct ts" x="20" y="384">Work area — gas heater</text>
+
+      <text class="ct th" x="480" y="312">Best months</text>
+      <text class="ct ts" x="480" y="328" fill="#3B6D11">Apr · May · Oct</text>
+
+      <text class="ct th" x="480" y="352">Heat veterans only</text>
+      <text class="ct ts" x="480" y="368" fill="#A32D2D">Jul · Aug (~38°C, no AC)</text>
+
+      <!-- Legend -->
+      <rect x="20"  y="398" width="10" height="10" rx="2" fill="#B5D4F4"/>
+      <text class="ct ts" x="34"  y="407">Cold</text>
+      <rect x="80" y="398" width="10" height="10" rx="2" fill="#C8DFA0"/>
+      <text class="ct ts" x="94" y="407">Chilly</text>
+      <rect x="155" y="398" width="10" height="10" rx="2" fill="#74B86E"/>
+      <text class="ct ts" x="169" y="407">Ideal</text>
+      <rect x="210" y="398" width="10" height="10" rx="2" fill="#EF9F27"/>
+      <text class="ct ts" x="224" y="407">Hot</text>
+      <rect x="260" y="398" width="10" height="10" rx="2" fill="#E24B4A"/>
+      <text class="ct ts" x="274" y="407">Intense heat</text>
+    </svg>
+  </div>
+
+  <hr>
+
+  <!-- Amenities -->
+  <h2>Amenities</h2>
+
+  <div class="amenities">
+    <div class="amenity">
+      <div class="amenity-label">Internet</div>
+      <div class="amenity-value">Fibre optic 100 Mbps</div>
+    </div>
+    <div class="amenity">
+      <div class="amenity-label">Sleeping</div>
+      <div class="amenity-value">Top floor bedroom, double bed</div>
+    </div>
+    <div class="amenity">
+      <div class="amenity-label">Bathroom</div>
+      <div class="amenity-value">Upstairs, hot water via boiler</div>
+    </div>
+    <div class="amenity">
+      <div class="amenity-label">Kitchen</div>
+      <div class="amenity-value">Kitchenette with sink</div>
+    </div>
+    <div class="amenity">
+      <div class="amenity-label">Workshop</div>
+      <div class="amenity-value">Woodworking, metalworking, CNC machine</div>
+    </div>
+    <div class="amenity">
+      <div class="amenity-label">Laundry</div>
+      <div class="amenity-value">Washing machine + drying rack</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Map -->
+  <h2>Location — Kipseli, Athens</h2>
+
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1174.2474721381977!2d23.741288993798666!3d38.000730908502014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1a2b829f4b83f%3A0xb98fbcf7736c6b89!2sSpetson%20126%2C%20Athina%20113%2063%2C%20Greece!5e1!3m2!1sen!2sis!4v1779316432556!5m2!1sen!2sis"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Studio Spetson location">
+    </iframe>
+  </div>
+
+  <hr>
+
+  <!-- Neighbourhood -->
+  <h2>Neighbourhood</h2>
+
+  <div class="neighbourhood">
+    <p>Kipseli is a dense, lively inner-city neighbourhood north of Exarchia — walkable, unpretentious, with a good mix of old Athens and newer arrivals. Fokionos Negri, the pedestrian boulevard two minutes away, has bars, cafés and restaurants running its length.</p>
+    <p>The area has strong art and print culture: a remarkable bookstore is the key drop point, a print studio is around the corner, and the neighbourhood generally attracts the kind of people worth knowing.</p>
+  </div>
+
+  <!-- ════════════════════════════════
+       GUEST SECTION — password gated
+  ════════════════════════════════ -->
+  <div id="guest-gate">
+    <h2>Guest information</h2>
+    <p style="font-size:14px; color:#666; font-family: var(--font-sans); margin-bottom: 20px;">Entry codes, WiFi, appliances and local recommendations for confirmed guests.</p>
+
+    <div class="gate-prompt">
+      <label for="pw-input">Access code</label>
+      <input type="password" id="pw-input" placeholder="········" autocomplete="off" spellcheck="false">
+      <button class="gate-btn" onclick="checkPassword()">Enter</button>
+    </div>
+    <div class="gate-error" id="gate-error">Incorrect code.</div>
+  </div>
+
+  <!-- Guest content — hidden until unlocked -->
+  <div id="guest-content">
+
+    <hr>
+
+    <!-- Getting there -->
+    <h2>Getting here</h2>
+
+    <div class="info-block">
+      <h3>From the airport — taxi</h3>
+      <p>Book in advance through their website. Around €55. Reliable for 2–4 people or one person with a lot of luggage.</p>
+      <ul>
+        <li><a href="https://www.athensairporttaxi247.com/" target="_blank" rel="noopener">athensairporttaxi247.com</a></li>
+        <li><a href="https://www.athensairporttaxi.org/" target="_blank" rel="noopener">athensairporttaxi.org</a></li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h3>From the airport — metro + taxi</h3>
+      <p>Best value for one person travelling light. Take the metro to Ampelokipoi station, then a taxi. Use Uber or FreeNow — avoid hailing from the street.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Taxi apps</h3>
+      <p>Get Uber or <strong>FreeNow</strong> running before you arrive. Street taxis in Athens have been known to take longer routes or skip the meter. The apps keep things honest and they're cheap.</p>
+    </div>
+
+    <hr>
+
+    <!-- Keys -->
+    <h2>Keys</h2>
+
+    <div class="info-block">
+      <h3>Address</h3>
+      <p>Spetson 126, 11363 Kipseli, Athens.</p>
+
+      <h3 style="margin-top:20px;">Key pickup — Ometeoritis bookstore</h3>
+      <p>Negri Fokionos 68, Athina 113 61 — 3 minutes walk from the studio.</p>
+      <p>Keys are in the lockbox on the outside of the bookstore. <strong>DM for the code.</strong> When done, lock the box and mix the numbers.</p>
+      <p class="note">If you arrive during opening hours, say hi to Benoit the owner — French transplant, friend of the studio, knows everything good going on in Kipseli.</p>
+    </div>
+
+    <hr>
+
+    <!-- Entry -->
+    <h2>Getting in</h2>
+
+    <div class="info-block">
+      <p>The studio has two locks in active use.</p>
+
+      <h3>1. Shutter + padlock</h3>
+      <p>Unlock the padlock first. When the pin retracts it can get pinched by the shutter — jiggle it and pull the pin toward you. Raise the shutter from the centre (it jams if you raise from one side). Bring it to door height and leave it there.</p>
+
+      <h3>2. Door</h3>
+      <p>Unlock with the second key.</p>
+
+      <h3>Security</h3>
+      <p>Lock the door during the day. Pull down and lock the shutter when away at night. When inside overnight, pulling the shutter down (without locking) is sufficient — the 24h parking across the road is a strong deterrent and there has never been an attempt on the studio.</p>
+    </div>
+
+    <hr>
+
+    <!-- WiFi -->
+    <h2>Internet</h2>
+
+    <div class="info-block">
+      <p>Fibre optic 100 Mbps.</p>
+      <table class="cred-table">
+        <tr><td>Network (5GHz)</td><td>INALAN_5G_ixaq6u</td></tr>
+        <tr><td>Type</td><td>WPA</td></tr>
+        <tr><td>Password</td><td>wDP25zCZ</td></tr>
+      </table>
+      <p class="note" style="margin-top:12px;">This is a prepaid contract — top up at <a href="https://my.inalan.gr/" target="_blank" rel="noopener">my.inalan.gr</a> when needed (€25/month). Login: <code>1774511322</code> / ask Halldór for password.</p>
+    </div>
+
+    <hr>
+
+    <!-- Appliances -->
+    <h2>Appliances</h2>
+
+    <div class="info-block">
+      <h3>Hot water boiler</h3>
+      <p>There is a boiler in the basement on a timer. Press the <strong>BOOST</strong> button about 30 minutes before you need hot water. Pressing multiple times extends the timer (15 min, 30 min, 1 hr, etc.). It has a thermostat so it won't overheat. Hot water runs to the kitchenette sink and the upstairs bathroom.</p>
+      <p class="note">If it's not responding, someone may have toggled the main switch. Try flipping it to the other position and then use the boost button — the indicator lights should come on.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Heating</h3>
+      <p><strong>Bedroom:</strong> Electric oil radiator — fine for overnight use. Draw the curtains to hold warmth in.</p>
+      <p><strong>Work area:</strong> Gas heater (Kingfer) for heating the larger lower floor spaces.</p>
+      <p><strong>Blower:</strong> Small fan heater for a quick boost — coming out of the shower, etc. Not for continuous overnight use.</p>
+      <p class="note">For gas refills: take the bottle to Kipselis 89 (Petrogaz). Exchange empty for full, around €20–25.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Toilet</h3>
+      <p><strong>Do not flush toilet paper.</strong> Athens plumbing is ancient and the studio is especially sensitive. Use the bin next to the toilet. Flushing paper will clog the system and can cause a sewage leak in the basement.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Sleeping — warm months</h3>
+      <p>Mosquitos are active in summer. Use the fan to blow air across the bed — this keeps them off and makes it cooler. The window to the back can stay open; it's quiet.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Laundry</h3>
+      <p>Washing machine: run on 40°C Cotton setting. Use the folding drying rack — keep a window open while drying. Baby-safe detergent is available.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Cockroaches</h3>
+      <p>Athens has them, active in warm months. Poison is available — put a little in basement corners. Add a small amount of chlorine (<em>χλώριο / chlório</em>) to the drains and toilets every couple of days to stop them coming up from the sewer. Available in any supermarket for a couple of euros. Don't leave food exposed and take out food waste immediately.</p>
+      <p><strong>Recycling:</strong> Black bins = general waste. Blue bins = paper, metal, glass, plastic.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Workshop</h3>
+      <p>Woodworking tools, some metalworking, and a CNC machine (wood, plastic, mild aluminium). Consult with Halldór before using tools.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Siesta</h3>
+      <p>Greece observes a siesta. Do noisy work between 10:00 and 14:00. Siesta is technically 14:00–17:00 — keep it quiet. Halldorophone players especially: the instrument carries far and has upset neighbours at high volume.</p>
+    </div>
+
+    <div class="info-block">
+      <h3>Caretaker</h3>
+      <p>Mister Sotiris looks after the residential part of the building. This is a semi-official, unpaid role — only contact him if genuinely needed.</p>
+      <p><a href="tel:+306977894563">+30 697 789 4563</a></p>
+    </div>
+
+    <hr>
+
+    <!-- Good spots -->
+    <h2>Good spots — Kipseli</h2>
+
+    <div class="info-block">
+      <ul class="spots">
+        <li>
+          <div class="spot-name">Ometeoritis bookstore</div>
+          <div>Remarkably good — current Greek and European publications in arts, architecture, culture. Benoit knows everything worth knowing in the area.</div>
+          <a href="https://www.instagram.com/ometeoritis/" target="_blank" rel="noopener">instagram →</a>
+        </li>
+        <li>
+          <div class="spot-name">KET — TV Control Center</div>
+          <div>Active arts venue. Dimitri and Fotini are friends and a genuine cultural anchor in Kipseli. Highly recommended.</div>
+          <a href="https://polychorosket.gr/en/" target="_blank" rel="noopener">polychorosket.gr →</a>
+        </li>
+        <li>
+          <div class="spot-name">Kipseli Print Studio</div>
+          <div>Screen printing workshops and residencies. Eleanor Lines is a friend — open to short-term work stints by arrangement.</div>
+          <a href="https://www.kypseliprintstudio.com/" target="_blank" rel="noopener">kypseliprintstudio.com →</a>
+        </li>
+        <li>
+          <div class="spot-name">Taste of Damascus</div>
+          <div>Fokionos Negri. Best falafel around. Syrian family-run.</div>
+        </li>
+        <li>
+          <div class="spot-name">Bakalagatos</div>
+          <div>Fusion take on classic Greek recipes.</div>
+        </li>
+        <li>
+          <div class="spot-name">Sklavenitis supermarket</div>
+          <div>Well stocked, fair prices. Bigger location on Velvendou street, up from the square.</div>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Good spots — Athens</h2>
+
+    <div class="info-block">
+      <ul class="spots">
+        <li>
+          <div class="spot-name">Atlantikos</div>
+          <div>Great seafood. Traditional dishes with fusion vibes.</div>
+          <a href="https://maps.app.goo.gl/h4GM2K69r4yAioDNA" target="_blank" rel="noopener">map →</a>
+        </li>
+        <li>
+          <div class="spot-name">Ouseri Lesvos</div>
+          <div>Traditional Greek taverna. Seafood especially good.</div>
+          <a href="https://maps.app.goo.gl/LeGU8EngcEt5wqdp6" target="_blank" rel="noopener">map →</a>
+        </li>
+        <li>
+          <div class="spot-name">Cantina Social</div>
+          <div>Queer, lively. Gets going late. Best in summer.</div>
+          <a href="https://maps.app.goo.gl/vQ1rd4fn9aNdN1A27" target="_blank" rel="noopener">map →</a>
+        </li>
+      </ul>
+    </div>
+
+    <h2>Elsewhere in Greece</h2>
+    <div class="info-block">
+      <p><a href="https://oldcarpetfactory.com/" target="_blank" rel="noopener">oldcarpetfactory.com →</a></p>
+    </div>
+
+  </div><!-- /guest-content -->
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <a href="https://halldorophone.info" style="color: inherit; text-decoration: none;">halldorophone.info</a>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+  // Set your guest password here
+  const GUEST_PASSWORD = 'chonk';
+
+  function checkPassword() {
+    const input = document.getElementById('pw-input').value;
+    const error = document.getElementById('gate-error');
+    const content = document.getElementById('guest-content');
+    const gate = document.getElementById('guest-gate');
+
+    if (input === GUEST_PASSWORD) {
+      gate.style.display = 'none';
+      content.style.display = 'block';
+      // Scroll smoothly to content
+      content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      error.style.display = 'block';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+
+  // Allow Enter key
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
+
+</body>
+</html>
