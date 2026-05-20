@@ -349,6 +349,15 @@
     }
 
     /* ── Responsive ── */
+    /* ── Inline doc images ── */
+    .doc-img {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 16px 0;
+      border: 1px solid var(--rule);
+    }
+
     @media (max-width: 520px) {
       .gallery { grid-template-columns: 1fr 1fr; }
       .amenities { grid-template-columns: 1fr; }
@@ -362,10 +371,6 @@
 <div class="page">
 
   <!-- Header -->
-  <header class="site-header">
-    <a href="https://halldorophone.info">Halldór Úlfarsson</a> &nbsp;/&nbsp; Studio Spetson
-  </header>
-
   <!-- Title -->
   <h1>Studio Spetson</h1>
   <p class="intro">A live-work studio in Kipseli, Athens. Open plan, high ceilings, workshop facilities. Available to collaborators and friends.</p>
@@ -586,8 +591,8 @@
   <h2>Neighbourhood</h2>
 
   <div class="neighbourhood">
-    <p>Kipseli is a dense, lively inner-city neighbourhood north of Exarchia — walkable, unpretentious, with a good mix of old Athens and newer arrivals. Fokionos Negri, the pedestrian boulevard two minutes away, has bars, cafés and restaurants running its length.</p>
-    <p>The area has strong art and print culture: a remarkable bookstore is the key drop point, a print studio is around the corner, and the neighbourhood generally attracts the kind of people worth knowing.</p>
+    <p>Kipseli is a dense, inner-city neighbourhood north of Exarchia — walkable, with a mix of Greeks and foreigners. Fokionos Negri, the pedestrian boulevard two minutes away, has bars, cafés and restaurants running its length.</p>
+    <p>The area has many artist-run spaces: studios, print shops, ceramics, showrooms. The vibe is good.</p>
   </div>
 
   <!-- ════════════════════════════════
@@ -644,7 +649,10 @@
       <h3 style="margin-top:20px;">Key pickup — Ometeoritis bookstore</h3>
       <p>Negri Fokionos 68, Athina 113 61 — 3 minutes walk from the studio.</p>
       <p>Keys are in the lockbox on the outside of the bookstore. <strong>DM for the code.</strong> When done, lock the box and mix the numbers.</p>
+      <img src="bookstore.png" alt="Ometeoritis bookstore lockbox" class="doc-img">
       <p class="note">If you arrive during opening hours, say hi to Benoit the owner — French transplant, friend of the studio, knows everything good going on in Kipseli.</p>
+      <h3 style="margin-top:20px;">Walking from Ometeoritis</h3>
+      <img src="WalkToSpetson.png" alt="Walking route from Ometeoritis to studio" class="doc-img">
     </div>
 
     <hr>
@@ -654,9 +662,11 @@
 
     <div class="info-block">
       <p>The studio has two locks in active use.</p>
+      <img src="Spetson Front.png" alt="Front of studio building with shutter" class="doc-img">
 
       <h3>1. Shutter + padlock</h3>
       <p>Unlock the padlock first. When the pin retracts it can get pinched by the shutter — jiggle it and pull the pin toward you. Raise the shutter from the centre (it jams if you raise from one side). Bring it to door height and leave it there.</p>
+      <img src="padlock.png" alt="Padlock style" class="doc-img">
 
       <h3>2. Door</h3>
       <p>Unlock with the second key.</p>
@@ -688,15 +698,20 @@
     <div class="info-block">
       <h3>Hot water boiler</h3>
       <p>There is a boiler in the basement on a timer. Press the <strong>BOOST</strong> button about 30 minutes before you need hot water. Pressing multiple times extends the timer (15 min, 30 min, 1 hr, etc.). It has a thermostat so it won't overheat. Hot water runs to the kitchenette sink and the upstairs bathroom.</p>
+      <img src="timer.jpg" alt="Boiler timer — press BOOST" class="doc-img">
       <p class="note">If it's not responding, someone may have toggled the main switch. Try flipping it to the other position and then use the boost button — the indicator lights should come on.</p>
     </div>
 
     <div class="info-block">
       <h3>Heating</h3>
       <p><strong>Bedroom:</strong> Electric oil radiator — fine for overnight use. Draw the curtains to hold warmth in.</p>
-      <p><strong>Work area:</strong> Gas heater (Kingfer) for heating the larger lower floor spaces.</p>
+      <img src="electric.jpeg" alt="Electric oil radiator" class="doc-img">
       <p><strong>Blower:</strong> Small fan heater for a quick boost — coming out of the shower, etc. Not for continuous overnight use.</p>
+      <img src="FanBlower.jpeg" alt="Fan blower heater" class="doc-img">
+      <p><strong>Work area:</strong> Gas heater (Kingfer) for heating the larger lower floor spaces.</p>
+      <img src="GasHeater.jpeg" alt="Gas heater" class="doc-img">
       <p class="note">For gas refills: take the bottle to Kipselis 89 (Petrogaz). Exchange empty for full, around €20–25.</p>
+      <img src="Petrogaz.png" alt="Petrogaz shop on Kipselis 89" class="doc-img">
     </div>
 
     <div class="info-block">
@@ -712,11 +727,13 @@
     <div class="info-block">
       <h3>Laundry</h3>
       <p>Washing machine: run on 40°C Cotton setting. Use the folding drying rack — keep a window open while drying. Baby-safe detergent is available.</p>
+      <img src="Washer.jpg" alt="Washing machine dial — set to Cotton" class="doc-img">
     </div>
 
     <div class="info-block">
       <h3>Cockroaches</h3>
       <p>Athens has them, active in warm months. Poison is available — put a little in basement corners. Add a small amount of chlorine (<em>χλώριο / chlório</em>) to the drains and toilets every couple of days to stop them coming up from the sewer. Available in any supermarket for a couple of euros. Don't leave food exposed and take out food waste immediately.</p>
+      <img src="chlorine.jpg" alt="Chlorine / Klinex bottle" class="doc-img">
       <p><strong>Recycling:</strong> Black bins = general waste. Blue bins = paper, metal, glass, plastic.</p>
     </div>
 
@@ -802,10 +819,6 @@
 
   </div><!-- /guest-content -->
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <a href="https://halldorophone.info" style="color: inherit; text-decoration: none;">halldorophone.info</a>
-  </footer>
 
 </div><!-- /page -->
 
