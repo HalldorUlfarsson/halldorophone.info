@@ -52,8 +52,9 @@
       }
     </style>
     <script>
-      // Store the 404'd path so the SPA can potentially handle it
+      // Store the 404'd path and redirect to root so the SPA can handle it
       sessionStorage.setItem('redirect', window.location.pathname);
+      window.location.replace('/');
     </script>
   </head>
   <body>
