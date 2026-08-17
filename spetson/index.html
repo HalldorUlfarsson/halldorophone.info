@@ -131,6 +131,21 @@
 
     .gallery-link:hover { color: var(--text); }
 
+    /* ── 3D model embed ── */
+    .model-wrap {
+      width: 100%;
+      aspect-ratio: 3/2;
+      margin-bottom: 6px;
+      background: #fff;
+    }
+
+    .model-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
     /* ── Climate chart embed ── */
     .climate-wrap {
       border: 1px solid var(--rule);
@@ -363,6 +378,7 @@
 
     @media (max-width: 520px) {
       .gallery { grid-template-columns: 1fr 1fr; }
+      .model-wrap { aspect-ratio: 4/3; }
       .amenities { grid-template-columns: 1fr; }
       .amenity:nth-child(odd) { border-right: none; padding-right: 0; }
       .amenity:nth-child(even) { padding-left: 0; }
@@ -384,6 +400,10 @@
 
   <!-- Gallery -->
   <h2>Space</h2>
+
+  <div class="model-wrap">
+    <iframe src="model.html" title="Studio Spetson 3D model" loading="lazy"></iframe>
+  </div>
 
   <div class="gallery">
     <div class="gallery-item">
